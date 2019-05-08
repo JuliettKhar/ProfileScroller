@@ -49,15 +49,18 @@ function profileIterator(profiles) {
 
 function nextProfile() {
 	const currentProfile = profiles.next().value;
-
-profileDisplay.innerHTML = ` 
-		<ul class="list-group">
-			<li class="list-group-item">Name:${currentProfile.name}</li>
-			<li class="list-group-item">Age:${currentProfile.age}</li>
-			<li class="list-group-item">Location:${currentProfile.location}</li>
-			<li class="list-group-item">Preferences:${currentProfile.gender} looking for ${currentProfile.lookingfor}</li>
-`;
-		 document.querySelector('#imageDisplay').innerHTML = `<img src="${currentProfile.image}>`;
+	if(currentProfile !== undefined) {
+	profileDisplay.innerHTML = ` 
+			<ul class="list-group">
+				<li class="list-group-item">Name:${currentProfile.name}</li>
+				<li class="list-group-item">Age:${currentProfile.age}</li>
+				<li class="list-group-item">Location:${currentProfile.location}</li>
+				<li class="list-group-item">Preferences:${currentProfile.gender} looking for ${currentProfile.lookingfor}</li>
+	`;
+			 document.querySelector('#imageDisplay').innerHTML = `<img src="${currentProfile.image}">`;
+	} else {
+			window.location.reload();
+	}
 }
 
 function subscribe() {
@@ -67,6 +70,7 @@ function subscribe() {
 function init() {
 		findElements();
 		subscribe();
+		nextProfile();
 
 }
 
